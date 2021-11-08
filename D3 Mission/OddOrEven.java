@@ -86,7 +86,7 @@ public class OddOrEven {
     private static void playerlose(int pnameCapital, int roundcount) {
 
         System.out.println("당신의 소지금은 " + pnameCapital + " 이며, 총 " + roundcount + "라운드 진행되었습니다.");
-        System.out.println("Game Over");
+        System.out.println(" - Game Over - ");
     }
 
     private static String rCountnumJudge(int rCountNum) {
@@ -100,23 +100,24 @@ public class OddOrEven {
         return rOddEven;
     }
 
-    private static int inputFirstBetnum(Scanner sc) {
-        System.out.println("베팅 금액을 입력해주세요.");
-        int inputBetNum = sc.nextInt();
-        return inputBetNum;
-    }
-
     private static int inputBetnumover(Scanner sc, int pnameCapital, int rnameCpatial) {
-        while (true) {
+        int inputBetNum = getInputBetNum(sc);
 
-            int betNum = inputFirstBetnum(sc);
-            if (betNum > min(pnameCapital, rnameCpatial)) {
-                System.out.println("베팅 금액을 초과하였습니다." + "\n" + min(pnameCapital, rnameCpatial) + " " + "보다 낮은 수로 입력해주세요.");
-                return inputFirstBetnum(sc);
+        while (inputBetNum != 0) {
+            if (inputBetNum > min(pnameCapital, rnameCpatial)) {
+                System.out.println("베팅 금액을 초과하였습니다." + "\n" + min(pnameCapital, rnameCpatial) + " " + "이하로 입력해주세요.");
+                inputBetNum = getInputBetNum(sc);
             } else {
                 break;
             }
-        }return inputFirstBetnum(sc);
+        }
+        return inputBetNum;
+    }
+
+    private static int getInputBetNum(Scanner sc) {
+        System.out.println("베팅 금액을 입력해주세요.");
+        int inputBetNum = sc.nextInt();
+        return inputBetNum;
     }
 
 
