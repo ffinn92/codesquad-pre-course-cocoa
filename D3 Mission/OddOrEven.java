@@ -47,17 +47,65 @@ public class OddOrEven {
         return pnameCapital;
     }
 
+    private static Scanner inputPlayeName() {
+        Scanner sc = new Scanner(System.in);
+        String pname = inputOddEven(sc, "플레이어의 이름을 입력해주세요.");
+        System.out.println("플레이어의 이름은 " + pname + " 입니다.");
+        return sc;
+    }
 
-    private static int pBalanceWin(int pnameCapital, int bettingNum, String s) {
-        pnameCapital += bettingNum;
-        System.out.println(s + pnameCapital + "입니다.");
-        return pnameCapital;
+    private static int rCountNum() {
+        int rCountNum;
+        rCountNum = (int) (Math.random() * 20) + 1;
+        return rCountNum;
+    }
+
+    private static String inputOddEven(Scanner sc, String s) {
+        System.out.println(s);
+        return sc.next();
+    }
+
+    private static int inputBetnumover(Scanner sc, int pnameCapital, int rnameCpatial) {
+        int inputBetNum = getInputBetNum(sc);
+
+        while (inputBetNum != 0) {
+            if (inputBetNum > min(pnameCapital, rnameCpatial)) {
+                System.out.println("베팅 금액을 초과하였습니다." + "\n" + min(pnameCapital, rnameCpatial) + " " + "이하로 입력해주세요.");
+                inputBetNum = getInputBetNum(sc);
+            } else {
+                break;
+            }
+        }
+        return inputBetNum;
+    }
+
+    private static int getInputBetNum(Scanner sc) {
+        System.out.println("베팅 금액을 입력해주세요.");
+        int inputBetNum = sc.nextInt();
+        return inputBetNum;
+    }
+
+    private static String rCountnumJudge(int rCountNum) {
+        String rOddEven;
+
+        if (rCountNum % 2 == 0) {
+            rOddEven = "짝";
+        } else {
+            rOddEven = "홀";
+        }
+        return rOddEven;
     }
 
     private static int rBalanceLose(int rnameCpatial, int bettingNum, String s) {
         rnameCpatial -= bettingNum;
         System.out.println(s + rnameCpatial + "입니다.");
         return rnameCpatial;
+    }
+
+    private static int pBalanceWin(int pnameCapital, int bettingNum, String s) {
+        pnameCapital += bettingNum;
+        System.out.println(s + pnameCapital + "입니다.");
+        return pnameCapital;
     }
 
     private static int rBalanceWin(int rnameCpatial, int bettingNum, String s) {
@@ -89,54 +137,4 @@ public class OddOrEven {
         System.out.println(" - Game Over - ");
     }
 
-    private static String rCountnumJudge(int rCountNum) {
-        String rOddEven;
-
-        if (rCountNum % 2 == 0) {
-            rOddEven = "짝";
-        } else {
-            rOddEven = "홀";
-        }
-        return rOddEven;
-    }
-
-    private static int inputBetnumover(Scanner sc, int pnameCapital, int rnameCpatial) {
-        int inputBetNum = getInputBetNum(sc);
-
-        while (inputBetNum != 0) {
-            if (inputBetNum > min(pnameCapital, rnameCpatial)) {
-                System.out.println("베팅 금액을 초과하였습니다." + "\n" + min(pnameCapital, rnameCpatial) + " " + "이하로 입력해주세요.");
-                inputBetNum = getInputBetNum(sc);
-            } else {
-                break;
-            }
-        }
-        return inputBetNum;
-    }
-
-    private static int getInputBetNum(Scanner sc) {
-        System.out.println("베팅 금액을 입력해주세요.");
-        int inputBetNum = sc.nextInt();
-        return inputBetNum;
-    }
-
-
-    private static String inputOddEven(Scanner sc, String s) {
-        System.out.println(s);
-        return sc.next();
-    }
-
-    private static int rCountNum() {
-        int rCountNum;
-        rCountNum = (int) (Math.random() * 20) + 1;
-        System.out.println("상대방 숫자" + rCountNum);
-        return rCountNum;
-    }
-
-    private static Scanner inputPlayeName() {
-        Scanner sc = new Scanner(System.in);
-        String pname = inputOddEven(sc, "플레이어의 이름을 입력해주세요.");
-        System.out.println("플레이어의 이름은 " + pname + " 입니다.");
-        return sc;
-    }
 }
