@@ -6,13 +6,14 @@ import static java.lang.Math.min;
 import static java.lang.Math.pow;
 
 public class Play {
-    private Scanner sc = inputPlayerName();
 
     private int playerCapital = 100;
     private int computerCapital = 120;
     private int stageCount = 1;
 
     public int inputData() {
+        System.out.println("게임을 시작 하겠습니다.");
+        Scanner sc = new Scanner(System.in);
         int computerRandomNum = selectComputerRandomNum();
 
         String playerInputOddEven = inputOddEven(sc, "홀,짝을 입력해주세요.");
@@ -44,13 +45,6 @@ public class Play {
             return inputData();
         }
         return playerCapital;
-    }
-
-    private static Scanner inputPlayerName() {
-        Scanner sc = new Scanner(System.in);
-        String playerName = inputOddEven(sc, "플레이어의 이름을 입력해주세요.");
-        System.out.println("플레이어의 이름은 " + playerName + " 입니다.");
-        return sc;
     }
 
     private static int selectComputerRandomNum() {
