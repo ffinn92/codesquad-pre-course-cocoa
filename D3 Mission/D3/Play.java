@@ -21,11 +21,15 @@ public class Play {
         String computerOddEven = checkOddEven(computerRandomNum);
 
         if (playerInputOddEven.equals(computerOddEven)) {
-            computerCapital = computerLose(computerCapital, betMoney, "현재 상대방의 잔액은 ");
-            playerCapital = playerWin(playerCapital, betMoney, "현재 나의 잔액은 ");
+            computerCapital -= betMoney;
+            System.out.println("현재 상대방의 잔액은 " + computerCapital + "입니다.");
+            playerCapital += betMoney;
+            System.out.println("현재 나의 잔액은 " + playerCapital + "입니다.");
         } else {
-            playerCapital = playerLose(playerCapital, betMoney);
-            computerCapital = computerWin(computerCapital, betMoney, "현재 상대방의 잔액은 ");
+            computerCapital += betMoney;
+            System.out.println("현재 상대방의 잔액은 " + playerCapital + "입니다.");
+            playerCapital -= betMoney;
+            System.out.println("현재 나의 잔액은 " + computerCapital + "입니다.");
         }
 
         if (stageCount == 8 && computerCapital == 0) {
@@ -90,29 +94,6 @@ public class Play {
         }
         return computerOddEven;
     }
-
-    private static int computerLose(int computerCapital, int betMoney, String s) {
-        computerCapital -= betMoney;
-        System.out.println(s + computerCapital + "입니다.");
-        return computerCapital;
-    }
-
-    private static int playerWin(int playerCapital, int betMoney, String s) {
-        playerCapital += betMoney;
-        System.out.println(s + playerCapital + "입니다.");
-        return playerCapital;
-    }
-
-    private static int computerWin(int computerCaptial, int betMoney, String s) {
-        computerCaptial = playerWin(computerCaptial, betMoney, s);
-        return computerCaptial;
-    }
-
-    private static int playerLose(int playerCaptial, int betMoney) {
-        playerCaptial = computerLose(playerCaptial, betMoney, "현재 나의 잔액은 ");
-        return playerCaptial;
-    }
-
 
     private static void playerWin(int playerCapital, int i) {
         System.out.println("WIN!!");
