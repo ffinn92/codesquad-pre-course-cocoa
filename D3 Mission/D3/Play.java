@@ -11,8 +11,8 @@ public class Play {
     private int computerCapital = 120;
     private int stageCount = 1;
 
-    public int inputData() {
-        System.out.println("게임을 시작 하겠습니다.");
+    public void inputData() {
+
         Scanner sc = new Scanner(System.in);
         int computerRandomNum = selectComputerRandomNum();
 
@@ -32,20 +32,31 @@ public class Play {
             playerCapital -= betMoney;
             System.out.println("현재 나의 잔액은 " + computerCapital + "입니다.");
         }
+    }
 
-        if (stageCount == 8 && computerCapital == 0) {
-            playerWin(playerCapital, stageCount);
-        } else if (computerCapital == 0) {
-            stageCount++;
-            computerCapital = nextLevel(playerCapital, stageCount);
-            return inputData();
-        } else if (playerCapital == 0) {
-            playerlose(playerCapital, stageCount);
-        } else {
-            return inputData();
-        }
+    public int getPlayerCapital(){
         return playerCapital;
     }
+
+    public int getStageCount(){
+        return stageCount;
+    }
+
+//        if (stageCount == 8 && computerCapital == 0) {
+//            playerWin(playerCapital, stageCount);
+//        } else if (computerCapital == 0) {
+//            stageCount++;
+//            computerCapital = nextLevel(playerCapital, stageCount);
+//            return inputData();
+//        } else if (playerCapital == 0) {
+//            playerlose(playerCapital, stageCount);
+//        } else {
+//            return inputData();
+//        }
+//        return playerCapital;
+//    }
+
+
 
     private static int selectComputerRandomNum() {
         int computerRandomNum;
@@ -89,21 +100,21 @@ public class Play {
         return computerOddEven;
     }
 
-    private static void playerWin(int playerCapital, int i) {
-        System.out.println("WIN!!");
-        System.out.println("당신의 소지금은 " + playerCapital + " 이며, 총 " + i + "라운드 진행되었습니다.");
-    }
-
-    private static int nextLevel(int playerCapital, int roundCount) {
-        int computerCapital;
-        computerCapital = (int) (playerCapital * pow(1.2, roundCount));
-        System.out.println(roundCount + "라운드" + ">>" + "새로운 상대가 등장합니다.");
-        return computerCapital;
-    }
-
-    private static void playerlose(int playerCaptial, int roundCount) {
-
-        System.out.println("당신의 소지금은 " + playerCaptial + " 이며, 총 " + roundCount + "라운드 진행되었습니다.");
-        System.out.println(" - Game Over - ");
-    }
-}
+//    private static void playerWin(int playerCapital, int i) {
+//        System.out.println("WIN!!");
+//        System.out.println("당신의 소지금은 " + playerCapital + " 이며, 총 " + i + "라운드 진행되었습니다.");
+//    }
+//
+//    private static int nextLevel(int playerCapital, int roundCount) {
+//        int computerCapital;
+//        computerCapital = (int) (playerCapital * pow(1.2, roundCount));
+//        System.out.println(roundCount + "라운드" + ">>" + "새로운 상대가 등장합니다.");
+//        return computerCapital;
+//    }
+//
+//    private static void playerlose(int playerCaptial, int roundCount) {
+//
+//        System.out.println("당신의 소지금은 " + playerCaptial + " 이며, 총 " + roundCount + "라운드 진행되었습니다.");
+//        System.out.println(" - Game Over - ");
+//    }
+//}
