@@ -264,23 +264,39 @@ public class Hangeulclock {
                 minute = ""; // 여기까지가 51~60분
                 break;
         }
+//
+//        for (int i = 0; i < 6; i++) {
+//            for (int j = 0; j < 6; j++) {
+//                boardArr[i][j] = ANSI_WHITE + boardArr[i][j] + ANSI_RESET;
+//            }
+//        }
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (hour.contains(boardArr[i][j])) {
+                    boardArr[i][j] = WHITE_BOLD_BRIGHT + boardArr[i][j] + ANSI_RESET;
+                }
+            }
+        }
+
+        if (nowHour != 12) {
+            boardArr[5][0] = ANSI_RESET + boardArr[5][0];
+        }
 
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                if (hour.contains(boardArr[i][j]) && j==5) {
-                    System.out.println(WHITE_BOLD_BRIGHT + boardArr[i][j] + ANSI_RESET);
-                }else if (hour.contains(boardArr[i][j]) ){
-                    System.out.print(WHITE_BOLD_BRIGHT + boardArr[i][j] + ANSI_RESET);
-                }else if (j == 5) {
-                    System.out.println(ANSI_WHITE + boardArr[i][j] + ANSI_RESET);
+                if (j == 5) {
+                    System.out.println(boardArr[i][j]);
                 } else {
-                    System.out.print(ANSI_WHITE + boardArr[i][j] + ANSI_RESET);
+                    System.out.print(boardArr[i][j]);
                 }
+
             }
         }
     }
-
-
 }
+
+
+
+
 
