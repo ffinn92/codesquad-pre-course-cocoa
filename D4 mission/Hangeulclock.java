@@ -1,24 +1,9 @@
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Hangeulclock {
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
-    public static final String ANSI_Gray = "\u001B[37m";
-
-    public static final String BLACK_BOLD_BRIGHT = "\033[1;90m"; // BLACK
-    public static final String RED_BOLD_BRIGHT = "\033[1;91m";   // RED
-    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m"; // GREEN
-    public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";// YELLOW
-    public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";  // BLUE
-    public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";// PURPLE
-    public static final String CYAN_BOLD_BRIGHT = "\033[1;96m";  // CYAN
     public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
 
 
@@ -72,19 +57,15 @@ public class Hangeulclock {
         boardArr[5][4] = "구";
         boardArr[5][5] = "분";
 
+        LocalDateTime current = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
+        String formatted = current.format(formatter);
 
-        for (int i = 0; i < boardArr.length; i++) {
-            for (int j = 0; j < boardArr.length; j++) {
-                if (boardArr[i][j].equals("삼")) {
-                    System.out.print(WHITE_BOLD_BRIGHT + boardArr[i][j] + ANSI_RESET);
-                } else if (j == 5) {
-                    System.out.println(ANSI_WHITE + boardArr[i][j] + ANSI_RESET);
-                } else {
-                    System.out.print(ANSI_WHITE + boardArr[i][j] + ANSI_RESET);
-                }
+        System.out.println(formatted.charAt(0));
+        System.out.println(formatted.charAt(1));
+        System.out.println(formatted.charAt(2));
+        System.out.println(formatted.charAt(3));
 
-            }
-        }
 
     }
 }
