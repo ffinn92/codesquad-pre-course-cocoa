@@ -27,7 +27,7 @@ public class Hangeulclock {
         System.out.println(current);
 
 
-        int nowHour = 1;
+        int nowHour = 12;
 
         if (nowHour >= 12) {
             nowHour = nowHour - 12;
@@ -37,43 +37,48 @@ public class Hangeulclock {
         String hour = "";
         switch (nowHour) {
             case 0:
-                hour = "열두시";
+            case 12:
+                boardArr[2][2] = WHITE_BOLD_BRIGHT + boardArr[2][2] + ANSI_RESET;
+                boardArr[2][4] = WHITE_BOLD_BRIGHT + boardArr[2][4] + ANSI_RESET;
                 break;
             case 1:
-                hour = "한시";
+                boardArr[0][0] = WHITE_BOLD_BRIGHT + boardArr[0][0] + ANSI_RESET;
                 break;
             case 2:
-                hour = "두시";
+                boardArr[0][1] = WHITE_BOLD_BRIGHT + boardArr[0][1] + ANSI_RESET;
                 break;
             case 3:
-                hour = "세시";
+                boardArr[0][2] = WHITE_BOLD_BRIGHT + boardArr[0][2] + ANSI_RESET;
                 break;
             case 4:
-                hour = "네시";
+                boardArr[0][3] = WHITE_BOLD_BRIGHT + boardArr[0][3] + ANSI_RESET;
                 break;
             case 5:
-                hour = "다섯시";
+                boardArr[0][4] = WHITE_BOLD_BRIGHT + boardArr[0][4] + ANSI_RESET;
+                boardArr[0][5] = WHITE_BOLD_BRIGHT + boardArr[0][5] + ANSI_RESET;
                 break;
             case 6:
-                hour = "여섯시";
+                boardArr[1][0] = WHITE_BOLD_BRIGHT + boardArr[1][0] + ANSI_RESET;
+                boardArr[1][1] = WHITE_BOLD_BRIGHT + boardArr[1][1] + ANSI_RESET;
                 break;
             case 7:
-                hour = "일곱시";
+                boardArr[1][2] = WHITE_BOLD_BRIGHT + boardArr[1][2] + ANSI_RESET;
+                boardArr[1][3] = WHITE_BOLD_BRIGHT + boardArr[1][3] + ANSI_RESET;
                 break;
             case 8:
-                hour = "여덟시";
+                boardArr[1][4] = WHITE_BOLD_BRIGHT + boardArr[1][4] + ANSI_RESET;
+                boardArr[1][5] = WHITE_BOLD_BRIGHT + boardArr[1][5] + ANSI_RESET;
                 break;
             case 9:
-                hour = "아홉시";
+                boardArr[2][0] = WHITE_BOLD_BRIGHT + boardArr[2][0] + ANSI_RESET;
+                boardArr[2][1] = WHITE_BOLD_BRIGHT + boardArr[2][1] + ANSI_RESET;
                 break;
             case 10:
-                hour = "열시";
+                boardArr[2][2] = WHITE_BOLD_BRIGHT + boardArr[2][2] + ANSI_RESET;
                 break;
             case 11:
-                hour = "열한시";
-                break;
-            case 12:
-                hour = "열두시";
+                boardArr[2][2] = WHITE_BOLD_BRIGHT + boardArr[2][2] + ANSI_RESET;
+                boardArr[2][3] = WHITE_BOLD_BRIGHT + boardArr[2][3] + ANSI_RESET;
                 break;
         }
 
@@ -265,23 +270,7 @@ public class Hangeulclock {
         System.out.println(nowHour);
         System.out.println(hour);
 
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                if ((0 < nowHour && nowHour < 6) && hour.contains(boardArr[i][j])) {
-                    boardArr[0][j] = WHITE_BOLD_BRIGHT + boardArr[0][j] + ANSI_RESET;
-                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
-                } else if ((5 < nowHour && nowHour < 9) && hour.contains(boardArr[i][j])) {
-                    boardArr[1][j] = WHITE_BOLD_BRIGHT + boardArr[1][j] + ANSI_RESET;
-                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
-                } else if ((8 < nowHour && nowHour < 13) && hour.contains(boardArr[i][j])) {
-                    boardArr[2][j] = WHITE_BOLD_BRIGHT + boardArr[2][j] + ANSI_RESET;
-                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
-                }  else if (0 == nowHour && hour.contains(boardArr[i][j])) {
-                    boardArr[2][j] = WHITE_BOLD_BRIGHT + boardArr[2][j] + ANSI_RESET;
-                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
-                }
-            }
-        }
+
 
         if (nowHour != 12) {
             boardArr[5][0] = ANSI_RESET + boardArr[5][0];
