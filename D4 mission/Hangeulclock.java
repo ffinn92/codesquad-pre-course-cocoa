@@ -26,48 +26,42 @@ public class Hangeulclock {
         LocalTime current = LocalTime.now();
         System.out.println(current);
 
-//        System.out.println(formatted.charAt(0));
-//        System.out.println(formatted.charAt(1));
-//        System.out.println(formatted.charAt(2));
-//        System.out.println(formatted.charAt(3));
-//
-//        System.out.println(formatted.substring(0, 7));
-//
-//        System.out.println(formatted.substring(0, 1)); // 시간을 뜻한다.
-//        System.out.println(formatted.substring(2, 4)); // 분을 뜻한다.
-//        System.out.println(formatted.substring(5, 7)); // 오전, 오후를 뜻한다.
 
-        int nowHour = current.getHour();
+        int nowHour = 1;
 
-        if (nowHour > 12) {
+        if (nowHour >= 12) {
             nowHour = nowHour - 12;
         }
 
+
         String hour = "";
         switch (nowHour) {
+            case 0:
+                hour = "열두시";
+                break;
             case 1:
                 hour = "한시";
                 break;
             case 2:
-                hour = "한시";
-                break;
-            case 3:
                 hour = "두시";
                 break;
-            case 4:
+            case 3:
                 hour = "세시";
                 break;
-            case 5:
+            case 4:
                 hour = "네시";
                 break;
-            case 6:
+            case 5:
                 hour = "다섯시";
                 break;
-            case 7:
+            case 6:
                 hour = "여섯시";
                 break;
-            case 8:
+            case 7:
                 hour = "일곱시";
+                break;
+            case 8:
+                hour = "여덟시";
                 break;
             case 9:
                 hour = "아홉시";
@@ -78,9 +72,12 @@ public class Hangeulclock {
             case 11:
                 hour = "열한시";
                 break;
+            case 12:
+                hour = "열두시";
+                break;
         }
 
-        int nowMinute = current.getMinute();
+        int nowMinute = 0;
         String minute = "";
         switch (nowMinute) {
             case 1:
@@ -264,16 +261,24 @@ public class Hangeulclock {
                 minute = ""; // 여기까지가 51~60분
                 break;
         }
-//
-//        for (int i = 0; i < 6; i++) {
-//            for (int j = 0; j < 6; j++) {
-//                boardArr[i][j] = ANSI_WHITE + boardArr[i][j] + ANSI_RESET;
-//            }
-//        }
+
+        System.out.println(nowHour);
+        System.out.println(hour);
+
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                if (hour.contains(boardArr[i][j])) {
-                    boardArr[i][j] = WHITE_BOLD_BRIGHT + boardArr[i][j] + ANSI_RESET;
+                if ((0 < nowHour && nowHour < 6) && hour.contains(boardArr[i][j])) {
+                    boardArr[0][j] = WHITE_BOLD_BRIGHT + boardArr[0][j] + ANSI_RESET;
+                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
+                } else if ((5 < nowHour && nowHour < 9) && hour.contains(boardArr[i][j])) {
+                    boardArr[1][j] = WHITE_BOLD_BRIGHT + boardArr[1][j] + ANSI_RESET;
+                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
+                } else if ((8 < nowHour && nowHour < 13) && hour.contains(boardArr[i][j])) {
+                    boardArr[2][j] = WHITE_BOLD_BRIGHT + boardArr[2][j] + ANSI_RESET;
+                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
+                }  else if (0 == nowHour && hour.contains(boardArr[i][j])) {
+                    boardArr[2][j] = WHITE_BOLD_BRIGHT + boardArr[2][j] + ANSI_RESET;
+                    boardArr[2][5] = WHITE_BOLD_BRIGHT + boardArr[2][5] + ANSI_RESET;
                 }
             }
         }
@@ -282,19 +287,21 @@ public class Hangeulclock {
             boardArr[5][0] = ANSI_RESET + boardArr[5][0];
         }
 
-
-        for (int i = 0; i < 6; i++) {
+        for (int k = 0; k < 6; k++) {
             for (int j = 0; j < 6; j++) {
                 if (j == 5) {
-                    System.out.println(boardArr[i][j]);
+                    System.out.println(boardArr[k][j]);
                 } else {
-                    System.out.print(boardArr[i][j]);
+                    System.out.print(boardArr[k][j]);
                 }
 
             }
         }
     }
 }
+
+
+
 
 
 
