@@ -5,6 +5,11 @@ public class GrimPan {
     public static void main(String[] args) {
         Frame f = new Frame("그림판");
         f.setSize(1000, 700);
+        f.setLayout(null);
+
+        Canvas c = new Canvas();
+        c.setBackground(Color.pink);
+        c.setBounds(100,100,150,100);
 
         MenuBar mb = new MenuBar();
         Menu mFile = new Menu("파일");
@@ -39,6 +44,7 @@ public class GrimPan {
         mb.setHelpMenu(mHelp);
 
         f.setMenuBar(mb);
+        f.add(c);
         f.addWindowListener(new EventHandler());
         f.setVisible(true);
     }
