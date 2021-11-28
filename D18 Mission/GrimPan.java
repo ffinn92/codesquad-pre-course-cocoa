@@ -1,26 +1,44 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public class GrimPan {
+public class GrimPan extends Frame{
+    MyCanvas can;
+    public GrimPan() {
+        super("그림판");
+        can = new MyCanvas();
+        can.setSize(700,500);
+        add(can);
+        can.setBackground(Color.white);
+        can.setLocation(200,30);
+
+        MyHandler my = new MyHandler();
+        can.addMouseMotionListener(my);
+    }
+
+    class MyHandler extends MouseMotionAdapter{
+        public void mouseDragged(MouseEvent e){
+            can.x=e.getX();
+            can.y=e.getY();
+            can.repaint();
+        }
+    }
+
     public static void main(String[] args) {
-        Frame f = new Frame("그림판");
-        f.setSize(1000, 500);
+
+        GrimPan f = new GrimPan();
+        f.setSize(1000,500);
         f.setLayout(null);
 
         Panel p = new Panel();
-        p.setSize(200,200);
-        p.setLocation(0,30);
+        p.setSize(200, 200);
+        p.setLocation(0, 30);
 
-        p.setLayout(new GridLayout(2,2));
+        p.setLayout(new GridLayout(2, 2));
 
         p.add(new Button("사각형"));
         p.add(new Button("원"));
         p.add(new Button("직선"));
         p.add(new Button("곡선"));
-
-        Canvas c = new Canvas();
-        c.setBackground(Color.pink);
-        c.setBounds(200,30,800,500);
 
         MenuBar mb = new MenuBar();
         Menu mFile = new Menu("파일");
@@ -56,22 +74,47 @@ public class GrimPan {
 
         f.setMenuBar(mb);
         f.add(p);
-        f.add(c);
         f.addWindowListener(new EventHandler());
         f.setVisible(true);
     }
 }
 
-class EventHandler implements WindowListener{
-    public void windowOpened (WindowEvent e){}
-    public void windowClosing(WindowEvent e){
+class EventHandler implements WindowListener {
+    public void windowOpened(WindowEvent e) {
+    }
+
+    public void windowClosing(WindowEvent e) {
         e.getWindow().setVisible(false);
         e.getWindow().dispose();
         System.exit(0);
     }
-    public void windowClosed(WindowEvent e) {}
-    public void windowIconified(WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowActivated(WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
+
+    public void windowClosed(WindowEvent e) {
+    }
+
+    public void windowIconified(WindowEvent e) {
+    }
+
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    public void windowActivated(WindowEvent e) {
+    }
+
+    public void windowDeactivated(WindowEvent e) {
+    }
+}
+
+class MyCanvas extends Canvas {
+    int x = 0;
+    int y = 0;
+
+    public void update(Graphics g) {
+        paint(g);
+    }
+
+    public void paint(Graphics g) {
+        g.drawString("*", x, y);
+    }
+
 }
