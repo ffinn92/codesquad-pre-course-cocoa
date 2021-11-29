@@ -13,12 +13,12 @@ public class TitanTimer {
 
         //목표. 운동 1종목을 Set(S), Reps(R), RestTime(RT), Tempo(T), Pause(P), 5개의 기능을 통해 마무리 하기.
 
-        //1. 셋트 수(Set)를 입력해주세요.
-        //1-1. 셋트 수(Set) 입력(5개의 기능을 총 몇번 반복할것인지 결정)
-        //2. 수행 횟수(Reps)를 입력해주세요.
-        //3. 쉬는 시간(RestTime)을 입력해주세요.(분 단위, 초 단위 둘다 받을 수 있도록 하자 ex) 1분 30초 )
-        //4. 템포(Tempo)를 입력해주세요. (초 단위로 입력 ex) 5T(5초), 사운드 기능 추가)
-        //5. 퍼즈(Pause)를 입력해주세요. (초 단위로 입력 ex) 2P(2초), 사운드 기능 추가)
+        //1. 셋트 수(Set)를 입력해주세요. **완료**
+        //1-1. 셋트 수(Set) 입력(5개의 기능을 총 몇번 반복할것인지 결정) **완료**
+        //2. 수행 횟수(Reps)를 입력해주세요. **완료**
+        //3. 쉬는 시간(RestTime)을 입력해주세요.(분 단위, 초 단위 둘다 받을 수 있도록 하자 ex) 1분 30초 ) **완료**
+        //4. 템포(Tempo)를 입력해주세요. (초 단위로 입력 ex) 5T(5초), 사운드 기능 추가) **완료**
+        //5. 퍼즈(Pause)를 입력해주세요. (초 단위로 입력 ex) 2P(2초), 사운드 기능 추가) **완료**
 
         //6. 실행 하시겠습니까? 실행 or 재설정 을 입력해주세요.
         //6-1. 재설정 입력 시 원하는 설정으로 다시 설정 할 수 있게 하기(1.Set 2.Reps 3.RestTime 4.Tempo 5.Pause)
@@ -51,9 +51,21 @@ public class TitanTimer {
         System.out.println("5. 퍼즈를 입력해주세요.");
         int pause = sc.nextInt();
 
-//        System.out.println("6. 실행 하시겠습니까? 실행 or 재설정을 입력해주세요.");
-//        String runOrReset = sc.next();
+        System.out.println("6. 실행 하시겠습니까? 실행 or 재설정을 입력해주세요.");
+        String runOrReset = sc.next();
 
+        String run = "실행";
+        String Reset = "재설정";
+
+        if (run.equals(runOrReset)) {
+            timerRun(set, reps, restTime, tempo, pause);
+        } else if (Reset.equals(runOrReset)) {
+            System.exit(0);
+        }
+
+    }
+
+    private static void timerRun(int set, int reps, int restTime, int tempo, int pause) throws InterruptedException {
         for (int i = 0; i < set; i++) {
             if (i == 0) {
                 tenCount = 10;
@@ -82,16 +94,16 @@ public class TitanTimer {
                         if (restTimeCount > 10) {
                             System.out.println(restTimeCount);
                             restTimeCount--;
-                        }else if(0 < restTimeCount && restTimeCount < 11){
-                            System.out.println(restTimeCount+"초 남았습니다.");
+                        } else if (0 < restTimeCount && restTimeCount < 11) {
+                            System.out.println(restTimeCount + "초 남았습니다.");
                             restTimeCount--;
-                        }else{
+                        } else {
                             restTimer.cancel();
                         }
                     }
                 };
                 restTimer.schedule(restTask, 0, 1000);
-                Thread.sleep(restTime*1000);
+                Thread.sleep(restTime * 1000);
             }
             for (int j = 0; j < reps; j++) {
                 if (tenCount == 0) {
@@ -132,7 +144,7 @@ public class TitanTimer {
                         }
                     };
                     pauseTimer.schedule(pauseTask, 0, 1000);
-                    Thread.sleep((pause) * 1000);
+                    Thread.sleep(pause * 1000);
                 }
             }
         }
