@@ -3,8 +3,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TitanTimer {
-    public static int count;
-    public static void main(String[] args) {
+
+    public static int tenCount;
+    public static int tempoCount;
+    public static int pauseCount;
+    public static int restTimeCount;
+
+    public static void main(String[] args) throws InterruptedException {
 
         //목표. 운동 1종목을 Set(S), Reps(R), RestTime(RT), Tempo(T), Pause(P), 5개의 기능을 통해 마무리 하기.
 
@@ -28,7 +33,7 @@ public class TitanTimer {
         //8-6. 1Set 종료 후 쉬는시간 시작
         //8-7. 쉬는시간 종료 10초 전 8-1 부터 시작하여 8-5까지 반복
         //8-8. 마지막 셋트 후 6 으로 돌아가서 실행 or 재설정 선택 후 반복
-        
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("1. 셋트 수를 입력해주세요.");
@@ -37,7 +42,7 @@ public class TitanTimer {
         System.out.println("2. 수행 횟수를 입력해주세요.");
         int reps = sc.nextInt();
 
-        System.out.println("3. 휴식 시간을 입력해주세요.");
+        System.out.println("3. 휴식 시간을 초단위로 입력해주세요.");
         int restTime = sc.nextInt();
 
         System.out.println("4. 템포를 입력해주세요.");
@@ -46,11 +51,91 @@ public class TitanTimer {
         System.out.println("5. 퍼즈를 입력해주세요.");
         int pause = sc.nextInt();
 
-        System.out.println("6. 실행 하시겠습니까? 실행 or 재설정을 입력해주세요.");
-        String runOrReset = sc.next();
+//        System.out.println("6. 실행 하시겠습니까? 실행 or 재설정을 입력해주세요.");
+//        String runOrReset = sc.next();
 
+        for (int i = 0; i < set; i++) {
+            if (i == 0) {
+                tenCount = 10;
 
+                Timer countTimer = new Timer();
+                TimerTask countTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (tenCount > 0) {
+                            System.out.println(tenCount);
+                            tenCount--;
+                        } else {
+                            countTimer.cancel();
+                        }
+                    }
+                };
+                countTimer.schedule(countTask, 0, 1000);
+                Thread.sleep(10000);
+            } else if (i > 0) {
+                restTimeCount = restTime;
 
+                Timer restTimer = new Timer();
+                TimerTask restTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (restTimeCount > 10) {
+                            System.out.println(restTimeCount);
+                            restTimeCount--;
+                        }else if(0 < restTimeCount && restTimeCount < 11){
+                            System.out.println(restTimeCount+"초 남았습니다.");
+                            restTimeCount--;
+                        }else{
+                            restTimer.cancel();
+                        }
+                    }
+                };
+                restTimer.schedule(restTask, 0, 1000);
+                Thread.sleep(restTime*1000);
+            }
+            for (int j = 0; j < reps; j++) {
+                if (tenCount == 0) {
+                    tempoCount = 0;
 
+                    Timer tempoTimer = new Timer();
+                    TimerTask tempoTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (tempoCount == 0) {
+                                System.out.println("삑(템포)");
+                                tempoCount++;
+                            } else if (0 < tempoCount && tempoCount < tempo + 1) {
+                                System.out.println("띠");
+                                tempoCount++;
+                            } else {
+                                tempoTimer.cancel();
+                            }
+                        }
+                    };
+                    tempoTimer.schedule(tempoTask, 0, 1000);
+                    Thread.sleep((tempo + 1) * 1000);
+                }
+
+                if (tempoCount == tempo + 1) {
+                    pauseCount = 0;
+
+                    Timer pauseTimer = new Timer();
+                    TimerTask pauseTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (pauseCount < pause) {
+                                System.out.println("띠(퍼즈종료(리프팅)");
+                                pauseCount++;
+                            } else {
+                                pauseTimer.cancel();
+                            }
+                        }
+                    };
+                    pauseTimer.schedule(pauseTask, 0, 1000);
+                    Thread.sleep((pause) * 1000);
+                }
+            }
+        }
     }
 }
+
