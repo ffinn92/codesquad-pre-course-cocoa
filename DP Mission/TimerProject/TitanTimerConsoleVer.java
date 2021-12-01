@@ -55,10 +55,6 @@ public class TitanTimerConsoleVer {
 //
     }
 
-
-
-
-
     private static void runOrReset(Scanner sc, int set, int reps, int restTime, int tempo, int pause) throws InterruptedException {
         while (true) {
             System.out.println("6. 실행 하시겠습니까? 실행 or 재설정을 입력해주세요.");
