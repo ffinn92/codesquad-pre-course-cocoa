@@ -1,55 +1,59 @@
 package TimerProject;
 
+import org.w3c.dom.Text;
+
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.EventHandler;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
-public class TitanTimerGuiVer {
+public class TitanTimerGuiVer extends Frame {
 
-    public static int tenCount;
-    public static int tempoCount;
-    public static int pauseCount;
-    public static int restTimeCount;
-
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         Frame f = new Frame("Timer");
         f.setSize(300, 300);
         f.setLayout(null);
 
-        Label setLabel = new Label("Set");
-        Label repsLabel = new Label("Reps");
-        Label restTimeLabel = new Label("RestTime");
-        Label tempoLabel = new Label("Tempo");
-        Label pauseLabel = new Label("Pause");
+        Label settingLabel = new Label("세트 수",Label.CENTER);
+        Label repsLabel = new Label("수행횟수",Label.CENTER);
+        Label restTimeLabel = new Label("휴식시간",Label.CENTER);
+        Label tempoLabel = new Label("템포",Label.CENTER);
+        Label pauseLabel = new Label("퍼즈",Label.CENTER);
 
-        TextField setField = new TextField(3);
+        TextField settingField = new TextField(3);
         TextField repsField = new TextField(3);
         TextField restTimeField = new TextField(3);
         TextField tempoField = new TextField(3);
         TextField pauseField = new TextField(3);
 
-        setLabel.setBounds(100, 100, 100, 100);
+        Panel inputPad = new Panel(new GridLayout(5,2));
+        inputPad.setSize(150,260);
+        inputPad.setLocation(0,35);
 
-        f.add(setLabel);
-        f.add(setField);
+        inputPad.add(settingLabel);
+        inputPad.add(settingField);
+        inputPad.add(repsLabel);
+        inputPad.add(repsField);
+        inputPad.add(restTimeLabel);
+        inputPad.add(restTimeField);
+        inputPad.add(tempoLabel);
+        inputPad.add(tempoField);
+        inputPad.add(pauseLabel);
+        inputPad.add(pauseField);
 
-        f.add(repsLabel);
-        f.add(repsField);
+        Label timerLabel = new Label();
+        Button startButton = new Button("Start");
+        Button resetButton = new Button("Reset");
 
-        f.add(restTimeLabel);
-        f.add(restTimeField);
+        timerLabel.setBackground(Color.white);
+        timerLabel.setBounds(153,35,144,114);
+        startButton.setBounds(150,150,75,150);
+        resetButton.setBounds(225,150,75,150);
 
-        f.add(tempoLabel);
-        f.add(tempoField);
-
-        f.add(pauseLabel);
-        f.add(pauseField);
+        f.add(inputPad);
+        f.add(timerLabel);
+        f.add(startButton);
+        f.add(resetButton);
 
         f.setVisible(true);
         f.addWindowListener(new WindowAdapter() {
