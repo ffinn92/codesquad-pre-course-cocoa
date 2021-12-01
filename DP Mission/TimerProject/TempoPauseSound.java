@@ -7,7 +7,7 @@ import java.io.File;
 
 public class TempoPauseSound {
 
-    public static void tempoPauseSound(){
+    public static void tempoPauseSound() {
 
         File file = new File("/Users/changhoonsong/Desktop/Java/cocoa/DP Mission/SoundEffect/TempoPause.wav");
 

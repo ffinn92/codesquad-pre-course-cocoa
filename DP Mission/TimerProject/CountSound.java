@@ -7,7 +7,7 @@ import java.io.File;
 
 public class CountSound {
 
-    public static void countSound(){
+    public static void countSound() {
 
         File file = new File("/Users/changhoonsong/Desktop/Java/cocoa/DP Mission/SoundEffect/tenCount.wav");
 

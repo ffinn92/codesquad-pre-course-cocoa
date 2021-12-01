@@ -7,7 +7,7 @@ import java.io.File;
 
 public class StartSound {
 
-    public static void startSound(){
+    public static void startSound() {
 
         File file = new File("/Users/changhoonsong/Desktop/Java/cocoa/DP Mission/SoundEffect/Start.wav");
 
