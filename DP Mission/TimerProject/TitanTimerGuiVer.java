@@ -9,6 +9,8 @@ import java.awt.event.*;
 
 public class TitanTimerGuiVer extends Frame {
 
+    public static int tenCount = 10;
+
     public static void main(String[] args) {
 
         Frame f = new Frame("Timer");
@@ -46,8 +48,12 @@ public class TitanTimerGuiVer extends Frame {
         Button startButton = new Button("Start");
         Button resetButton = new Button("Reset");
 
+        String tenCountStr = String.format("%02d",tenCount);
         timerLabel.setBackground(Color.white);
         timerLabel.setBounds(153,35,144,114);
+        timerLabel.setText(tenCountStr);
+        timerLabel.setFont(new Font("Verdana",Font.BOLD,50));
+        timerLabel.setAlignment(Label.CENTER);
 
         startButton.setBounds(150,150,75,150);
         resetButton.setBounds(225,150,75,150);
@@ -65,13 +71,10 @@ public class TitanTimerGuiVer extends Frame {
                 int restTimeInt = Integer.parseInt(restTimeText);
                 int tempoInt = Integer.parseInt(tempoText);
                 int pauseInt = Integer.parseInt(pauseText);
-
-                System.out.println(setsInt);
-                System.out.println(repsInt);
-                System.out.println(restTimeInt);
-                System.out.println(tempoInt);
-                System.out.println(pauseInt);
+                
             }
+
+
         });
 
         f.add(inputPad);
